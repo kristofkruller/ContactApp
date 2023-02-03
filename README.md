@@ -1,5 +1,6 @@
 # ContactApp
-Full stack contact list page 
+
+**Full stack contact list page flow:**
 
 
 1. Build a contact list page in HTML5 and CSS3
@@ -21,3 +22,18 @@ Build the backend of this Contact app. Make sure you serve the contact data from
 
 4. Please share a repo link uploaded to github.
 Please link your solution below. Make sure to include a readme file that tells us how to run your solution on localhost.
+
+**Contact fields** 
+Name: string; phone number: string; email adress: string;
+CTA AddPic; ChangePic; DeletePic;  Cancel; Done; 
+
+**Primary colors**
+BG
+#141414
+Grey / G 50 Foreground - 20 shade / Button - 40 shade
+#2D2D2D
+Button states - 10 shade #282828 Hover, Activate
+Text & Icon / Primary
+#FFFFFF
+
+**Fonts as in GlobalStyles**
