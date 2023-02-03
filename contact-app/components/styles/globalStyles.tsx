@@ -19,9 +19,12 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     color: ${({ theme }) => theme.colors.primary};
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.bg};
     padding: 0;
     margin: 0;
+
+    width: 100vw;
+    height: 100vh;
   }
 
   a {

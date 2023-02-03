@@ -1,23 +1,27 @@
 import Head from 'next/head'
-import styled from 'styled-components'
-import Contacts from '../components/Contacts/Contacts'
+import { PrismaClient, Contact, Prisma } from '@prisma/client'
+import ContactCard from '../components/ContactCard/ContactCard';
 
-const IndexWrap = styled.main`
-  width: 100vw;
-  height: 100vh;
-`
+const prisma = new PrismaClient();
 
-export default function Home() {
+export default function Home( {contacts} ) {
 
   return (
-    <IndexWrap>
+    <>
       <Head>
         <title>Contact App</title>
         <meta name="description" content="Handle contacts in a comfortable way" />
         <link rel="icon" href="/Vectorfav.svg" />
       </Head>
-      <Contacts />
-    </IndexWrap>
+      <ContactCard data={contacts} />
+    </>
   )
 
+}
+export async function getServerSideProps() {
+  const contacts = await prisma.contact.findMany();
+
+  return {
+    props: { contacts }
+  }
 }
