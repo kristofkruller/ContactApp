@@ -2,10 +2,20 @@ import Head from 'next/head'
 import { PrismaClient, Contact, Prisma } from '@prisma/client'
 import ContactCard from '../components/ContactCard/ContactCard';
 import AddContact from '../components/AddContact/AddContact';
+import { useContext, useEffect } from 'react';
+import { ContactContext } from '../context/ContactContext/ContactContext';
+import { OpenContext } from '../context/ContactContext/OpenContext';
 
 const prisma = new PrismaClient();
 
 export default function Home( {contacts} ) {
+
+  const { setContactData } = useContext(ContactContext);
+  const { openAddPopUp } = useContext(OpenContext);
+  
+  useEffect(() => {
+    setContactData(contacts);
+  }, [])
 
   return (
     <>
@@ -15,11 +25,16 @@ export default function Home( {contacts} ) {
         <link rel="icon" href="/Vectorfav.svg" />
       </Head>
       <ContactCard data={contacts} />
-      <AddContact />
+      { openAddPopUp &&
+        <AddContact />
+      }
     </>
   )
 
 }
+
+// db init
+
 export async function getServerSideProps() {
   const contacts = await prisma.contact.findMany();
 

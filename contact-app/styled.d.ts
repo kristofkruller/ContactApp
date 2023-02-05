@@ -7,6 +7,10 @@ declare module 'styled-components' {
       secondary: string;
       bg: string;
       actions: string;
+      highlight: string;
+      pressed: string;
+      hovered: string;
+      focused: string;
     };
   }
 }

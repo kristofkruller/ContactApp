@@ -1,15 +1,19 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
-import theme from '../components/styles/theme'
-import GlobalStyle from '../components/styles/globalStyles'
+import theme from '../assets/GlobalStyles/theme'
+import GlobalStyle from '../assets/GlobalStyles/globalStyles'
+import { ContactProvider } from '../context/ContactContext/ContactContext'
+import { OpenProvider } from '../context/ContactContext/OpenContext'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
+    <ContactProvider>
+      <OpenProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </OpenProvider>
+    </ContactProvider>
   )
 }

@@ -1,5 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AddContactsPopUp } from '../../assets/GlobalStyles/formStyles';
+import { InputWrap, InputField, Label } from '../../assets/GlobalStyles/inputFieldStyles';
+import { H2 } from '../../assets/GlobalStyles/typoStyles';
 import { saveContact } from '../../assets/prismaActions';
+import { ContactContext } from '../../context/ContactContext/ContactContext';
+import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn';
+import { BtnWrap } from '../Btn/btnStyles';
+import AddImg from './AddImg';
 
 interface ContactCreateInput {
   name: string,
@@ -8,10 +15,15 @@ interface ContactCreateInput {
 }
 
 const AddContact = () => {
+
+  const { setContactData, contactsState } = useContext(ContactContext)
+
   return (
-    <form onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
+    <AddContactsPopUp onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
+
+        const form = event.target as HTMLFormElement;
 
         const formData = new FormData(event.currentTarget);
         const name = formData.get("name") as string;
@@ -24,35 +36,45 @@ const AddContact = () => {
           email,
         };
         
-        const form = event.target as HTMLFormElement;
 
         try {
-          console.log(contactData);
           await saveContact(contactData);
-          // setContacts([...contacts, contactData]); context api
+          setContactData([...contactsState, contactData]);
           form.reset();
         } catch (err) {
           console.error(err);
         }
       }}
-    > AddContact
-      <input
-        placeholder="Jamie Wright"
-        name="name" 
-      />
-      <input
-        placeholder="+01 234 5678"
-        name="phone" 
-      />
-      <input
-        placeholder="jamie.wright@gmail.com"
-        name="email" 
-      />
-
-      <button type='reset'>Cancel</button>
-      <button type='submit'>Done</button>
+      
+    > 
+      <H2 id='title'>AddContact</H2>
+      <AddImg />
+      <InputWrap>
+        <Label>Name</Label>
+        <InputField
+          placeholder="Jamie Wright"
+          name="name"
+          required
+        />
+        <Label>Phone number</Label>
+        <InputField
+          placeholder="+01 234 5678"
+          name="phone"
+          required 
+        />
+        <Label>Email</Label>
+        <InputField
+          placeholder="jamie.wright@gmail.com"
+          name="email"
+          required
+        />
+      </InputWrap>
+      <BtnWrap>
+        <Btn buttonType={BUTTON_TYPE_CLASSES.SecondaryBtnL} type='reset'>Cancel</Btn>
+        <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnL} type='submit'>Done</Btn>
+      </BtnWrap>
     
-    </form>
+    </AddContactsPopUp>
   )
 }
 

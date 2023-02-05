@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --transition-basic: all 300ms ease-in-out;
+  }
 
   /*Font init*/
   @font-face {
@@ -34,6 +37,9 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+  }
+  *:focus {
+    outline: none;
   }
 `
 
