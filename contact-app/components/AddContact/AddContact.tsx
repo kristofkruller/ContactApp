@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AddContactsPopUp } from '../../assets/GlobalStyles/formStyles';
+import { AddContactsPopUp, PopUpWrap } from '../../assets/GlobalStyles/formStyles';
 import { InputWrap, InputField, Label } from '../../assets/GlobalStyles/inputFieldStyles';
 import { H2 } from '../../assets/GlobalStyles/typoStyles';
 import { saveContact } from '../../assets/prismaActions';
@@ -19,6 +19,7 @@ const AddContact = () => {
   const { setContactData, contactsState } = useContext(ContactContext)
 
   return (
+    <PopUpWrap>
     <AddContactsPopUp onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
@@ -75,6 +76,7 @@ const AddContact = () => {
       </BtnWrap>
     
     </AddContactsPopUp>
+    </PopUpWrap>
   )
 }
 

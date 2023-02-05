@@ -1,6 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
 
+const PopUpWrap = styled.main`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,.4);
+`
+
 const AddContactsPopUp = styled.form`
   display: flex;
   flex-direction: column;
@@ -32,4 +45,4 @@ const ProfilePic = styled(Image)`
 `
 
 
-export { AddContactsPopUp, ProfilePic, PicWrap }
+export { PopUpWrap, AddContactsPopUp, ProfilePic, PicWrap }

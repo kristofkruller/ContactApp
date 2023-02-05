@@ -1,4 +1,6 @@
 import { createContext, SetStateAction, useState } from "react";
+import { Contact } from "@prisma/client";
+
 
 export interface DefaultContextProps {
   children: React.ReactNode
@@ -7,7 +9,7 @@ export interface DefaultContextProps {
 //define fallbacks
 
 export const ContactContext = createContext<{
-  contactsState: any[],
+  contactsState: Contact[],
   setContactData: SetStateAction<any>
 }>({
   contactsState: [],

@@ -13,6 +13,8 @@ export default function Home( {contacts} ) {
   const { setContactData } = useContext(ContactContext);
   const { openAddPopUp } = useContext(OpenContext);
   
+  // fill up state with init val
+
   useEffect(() => {
     setContactData(contacts);
   }, [])
@@ -24,10 +26,12 @@ export default function Home( {contacts} ) {
         <meta name="description" content="Handle contacts in a comfortable way" />
         <link rel="icon" href="/Vectorfav.svg" />
       </Head>
-      <ContactCard data={contacts} />
-      { openAddPopUp &&
-        <AddContact />
-      }
+      <ContactCard>
+        {/* contact head and body */}
+        { openAddPopUp &&
+          <AddContact />
+        }
+      </ContactCard>
     </>
   )
 
