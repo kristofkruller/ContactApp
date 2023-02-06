@@ -5,6 +5,7 @@ const ContactWrap = styled.main`
 
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 `
 const ContactHeader = styled.section`
   display: flex;
@@ -44,6 +45,11 @@ const SettingsBlock = styled.div`
     cursor: pointer;
   }
 `
+const SepaDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`
 
 export {
   ContactWrap,
@@ -51,5 +57,6 @@ export {
   ContactBody,
   ContactRow,
   ProfileBlock,
-  SettingsBlock
+  SettingsBlock,
+  SepaDiv
 }

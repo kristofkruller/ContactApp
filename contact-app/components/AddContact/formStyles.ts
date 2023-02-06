@@ -44,5 +44,22 @@ const ProfilePic = styled(Image)`
   margin-right: 16px;
 `
 
+const HiddenFileInput = styled.input`
+  display: none;
+`
+const BtnSepa = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
 
-export { PopUpWrap, AddContactsPopUp, ProfilePic, PicWrap }
+  & > button:first-of-type {
+    width: 164px;
+  } 
+  & > button:last-of-type {
+    width: 40px;
+    min-width: unset;
+  }
+`
+
+
+export { PopUpWrap, AddContactsPopUp, ProfilePic, PicWrap, HiddenFileInput, BtnSepa }

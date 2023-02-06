@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SpinnerContainer } from "./Spinner";
 
 // L = withLabel, I = withIcon
 
@@ -34,6 +35,14 @@ const BtnLI = styled.button`
   &:active, &:focus {
     transition: var(--transition-basic);
     background-color: ${({theme}) => theme.colors.pressed};
+  }
+
+  & > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
   }
 `
 
@@ -95,7 +104,10 @@ const BtnWrap = styled.div`
   justify-content: flex-end;
   gap: 8px;
 `
-
+const ButtonSpinner = styled(SpinnerContainer)`
+  width: 30px;
+  height: 30px;
+`
 export { 
   BtnLI, 
   SecondaryBtnLI, 
@@ -104,5 +116,6 @@ export {
   SecondaryBtnL, 
   PrimaryBtnI, 
   SecondaryBtnI,
-  BtnWrap 
+  BtnWrap, 
+  ButtonSpinner
 }
