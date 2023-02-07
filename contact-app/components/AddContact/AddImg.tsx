@@ -3,7 +3,7 @@ import { BtnSepa, HiddenFileInput, LaberForInput, PicWrap, ProfilePic } from './
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
 import Image from 'next/image'
 
-import { imgStorage } from '../../assets/firebase'
+import { deleteImage, imgStorage } from '../../assets/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { ButtonSpinner } from '../Btn/btnStyles'
 import { ContactContext } from '../../context/ContactContext'
@@ -39,12 +39,14 @@ const AddImg = () => {
   const uploadOnChange = (event) => {
     setImgUpload(event.target.files[0])
   }
-  const changePicture = () => {
+  const changePicture = async () => {
+    await deleteImage(profileSrc)
     setImgUpload(null)
     setProfileSrc("")
     Input.current.click()
   }
-  const dump = () => {
+  const dump = async () => {
+    await deleteImage(profileSrc)
     setImgUpload(null)
     setProfileSrc("")
   }

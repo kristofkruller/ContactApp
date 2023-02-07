@@ -105,7 +105,7 @@ const ContactCard = ({ children }) => {
                   onClick={() => displayRowHandler(id)}
                 />
               </SettingsBlock>
-              { selectedRowId === id  && <SettingsPopUp id={id} />}
+              { selectedRowId === id  && <SettingsPopUp id={id} url={url} />}
             </ContactRow>
           )          
         )}

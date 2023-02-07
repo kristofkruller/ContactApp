@@ -6,12 +6,13 @@ import { useRouter } from 'next/router';
 import { deleteContact } from '../../assets/prismaActions';
 import DelayedSpinner from '../Btn/Spinner';
 import { OpenContext } from '../../context/OpenContext';
-
+import { deleteImage } from '../../assets/firebase';
 interface SetProp {
-  id: number
+  id: number,
+  url: string
 }
 
-const SettingsPopUp: FC<SetProp> = ({ id }) => {
+const SettingsPopUp: FC<SetProp> = ({ id, url }) => {
 
   const { displayRowSettings } = useContext(OpenContext)
   const [isLoading, setLoading] = useState(false)
@@ -25,6 +26,7 @@ const SettingsPopUp: FC<SetProp> = ({ id }) => {
     try {
       await deleteContact(id)
       displayRowSettings()
+      await deleteImage(url)
       router.reload()
     } catch (error) {
       console.error(error)  
