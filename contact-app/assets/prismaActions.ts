@@ -18,12 +18,16 @@ export async function saveContact(contact: Prisma.ContactCreateInput) {
 
 export async function deleteContact(id) {
   try {
-   fetch(`http://localhost:3000/api/delete/${id}`, {
-     headers: {
-       "Content-Type": "application/json",
-     },
-     method: 'DELETE'
-   })
+    await fetch(`http://localhost:3000/api/delete/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+    },
+    method: 'DELETE'
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(`Error deleting contact: ${response.status}`);
+      }
+    })
   } catch (error) {
    console.log(error); 
   }

@@ -1,12 +1,12 @@
 import React, { useContext, useRef, useState } from 'react'
-import { BtnSepa, HiddenFileInput, PicWrap, ProfilePic } from './formStyles'
+import { BtnSepa, HiddenFileInput, LaberForInput, PicWrap, ProfilePic } from './formStyles'
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
 import Image from 'next/image'
 
 import { imgStorage } from '../../assets/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { ButtonSpinner } from '../Btn/btnStyles'
-import { ContactContext } from '../../context/ContactContext/ContactContext'
+import { ContactContext } from '../../context/ContactContext'
 import { Msg } from '../../assets/GlobalStyles/typoStyles'
 
 const AddImg = () => {
@@ -29,7 +29,9 @@ const AddImg = () => {
 
     uploadBytes(imgRef, imgUpLoad).then((snapshot) => getDownloadURL(snapshot.ref).then(url => setProfileSrc(url)))
     
-    isLoading(false)
+    setTimeout(() => {
+      isLoading(false)
+    }, 400);
 
   }
 
@@ -86,9 +88,9 @@ const AddImg = () => {
         <>
           <HiddenFileInput ref={Input} type="file" onChange={event => uploadOnChange(event)} id="HiddenFileInput"/>
           { !profileSrc || profileSrc.length < 1 ? 
-            <Btn buttonType={BUTTON_TYPE_CLASSES.BtnLI} type="button" onClick={upLoadImg}>
+            <Btn buttonType={BUTTON_TYPE_CLASSES.BtnLI} type="button" onClick={upLoadImg} style={{padding: 0}}>
               { (!imgUpLoad || imgUpLoad.length < 1) ? 
-                <label htmlFor="HiddenFileInput">
+                <LaberForInput htmlFor="HiddenFileInput">
                   <Image 
                     alt='plus sign for add img'
                     src={"/icons/plus.svg"}
@@ -96,7 +98,7 @@ const AddImg = () => {
                     height={13.5}
                   /> 
                   Add picture
-                </label> :
+                </LaberForInput> :
                 <>
                   <Image 
                     alt='submit for add img'

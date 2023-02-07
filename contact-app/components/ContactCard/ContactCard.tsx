@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   ContactWrap,
   ContactHeader,
@@ -8,18 +8,24 @@ import {
   SettingsBlock,
   SepaDiv
 } from "./contactCardStyles"
-import { ContactContext } from '../../context/ContactContext/ContactContext'
+import { ContactContext } from '../../context/ContactContext'
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
 import Image from 'next/image'
-import { OpenContext } from '../../context/ContactContext/OpenContext'
+import { OpenContext } from '../../context/OpenContext'
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
 import SettingsPopUp from '../SettingsPopUp/SettingsPopUp'
 
 const ContactCard = ({ children }) => {
 
   const { contactsState } = useContext(ContactContext)
-  const { rowSettings, displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+  const { displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+
+  const [selectedRowId, setSelectedRowId] = useState(null);
+  
+  const displayRowHandler = (id) => {
+    setSelectedRowId(id);
+  };
 
   return (
     <ContactWrap>
@@ -96,10 +102,10 @@ const ContactCard = ({ children }) => {
                   src={"/icons/more.svg"}
                   width={19}
                   height={19}
-                  onClick={() => displayRowSettings()}
+                  onClick={() => displayRowHandler(id)}
                 />
               </SettingsBlock>
-              { rowSettings && <SettingsPopUp id={id} />}
+              { selectedRowId === id  && <SettingsPopUp id={id} />}
             </ContactRow>
           )          
         )}

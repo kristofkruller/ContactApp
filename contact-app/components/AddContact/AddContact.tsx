@@ -8,8 +8,9 @@ import AddImg from './AddImg';
 
 import { saveContact } from '../../assets/prismaActions';
 
-import { ContactContext } from '../../context/ContactContext/ContactContext';
-import { OpenContext } from '../../context/ContactContext/OpenContext';
+import { ContactContext } from '../../context/ContactContext';
+import { OpenContext } from '../../context/OpenContext';
+import { useRouter } from 'next/router';
 
 interface ContactCreateInput {
   name: string,
@@ -23,6 +24,8 @@ const AddContact = () => {
   const { setContactData, contactsState, profileSrc, setProfileSrc, setImgUpload } = useContext(ContactContext)
   const { setOpenAddPopUp } = useContext(OpenContext)
   const [loading, isLoading] = useState(false)
+
+  const router = useRouter()
 
   const fullReset = () => {
     setProfileSrc("")
@@ -54,16 +57,17 @@ const AddContact = () => {
           
 
           try {
-            await saveContact(contactData);
-            setContactData([...contactsState, contactData]);
-            form.reset();
+            await saveContact(contactData)
+            setContactData([...contactsState, contactData])
+            form.reset()
           } catch (err) {
             console.error(err);
           }
 
           // full reset
           fullReset()
-          
+          router.reload()
+
         }}
         
       > 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const SpinnerOverlay = styled.div`
@@ -37,4 +38,18 @@ const Spinner = () => {
   )
 }
 
-export default Spinner
+const DelayedSpinner = () => {
+  const [showSpinner, setShowSpinner] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowSpinner(true);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return showSpinner ? <Spinner /> : null;
+};
+
+export default DelayedSpinner

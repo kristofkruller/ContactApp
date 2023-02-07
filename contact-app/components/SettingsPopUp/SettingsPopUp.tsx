@@ -2,9 +2,10 @@ import React, { FC, useContext, useState } from 'react'
 import { SetRow, SettingsWrap } from './settingsPopUpStyles';
 import Image from 'next/image';
 import { BodyText } from '../../assets/GlobalStyles/typoStyles';
-import { ContactContext } from '../../context/ContactContext/ContactContext';
 import { useRouter } from 'next/router';
 import { deleteContact } from '../../assets/prismaActions';
+import DelayedSpinner from '../Btn/Spinner';
+import { OpenContext } from '../../context/OpenContext';
 
 interface SetProp {
   id: number
@@ -12,24 +13,28 @@ interface SetProp {
 
 const SettingsPopUp: FC<SetProp> = ({ id }) => {
 
-  const { setContactData, contactsState } = useContext(ContactContext)
+  const { displayRowSettings } = useContext(OpenContext)
   const [isLoading, setLoading] = useState(false)
 
-  // Refresh
+  // Refresh n del
 
-  // const router = useRouter()
+  const router = useRouter()
 
-  // const refreshData = () => {
-  //   router.replace(router.pathname, router.asPath, { shallow: false });
-  // }
-
-  // const handleDelete = (id) => {
-  //   deleteContact(id).then(() => {
-  //     refreshData();
-  //   });
-  // };
+  const handleDelete = async (id) => {
+    setLoading(true)
+    try {
+      await deleteContact(id)
+      displayRowSettings()
+      router.reload()
+    } catch (error) {
+      console.error(error)  
+    }
+    setLoading(false)
+  };
 
   return (
+    <>
+    {isLoading ? <DelayedSpinner /> :
     <SettingsWrap>
       <SetRow>
         <Image 
@@ -49,7 +54,7 @@ const SettingsPopUp: FC<SetProp> = ({ id }) => {
         />
         <BodyText>Favourite</BodyText>
       </SetRow>
-      <SetRow onClick={() => deleteContact(id)}>
+      <SetRow onClick={() => handleDelete(id)}>
         <Image 
           alt='contact profile placeholder'
           src={"/icons/delete.svg"}
@@ -59,6 +64,8 @@ const SettingsPopUp: FC<SetProp> = ({ id }) => {
         <BodyText>Remove</BodyText>
       </SetRow>
     </SettingsWrap>
+    }
+    </>
   )
 }
 

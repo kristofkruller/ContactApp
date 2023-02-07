@@ -47,6 +47,11 @@ const ProfilePic = styled(Image)`
 const HiddenFileInput = styled.input`
   display: none;
 `
+
+const LaberForInput = styled.label`
+  width: 100%;
+  height: 100%;
+`
 const BtnSepa = styled.div`
   display: flex;
   gap: 8px;
@@ -62,4 +67,4 @@ const BtnSepa = styled.div`
 `
 
 
-export { PopUpWrap, AddContactsPopUp, ProfilePic, PicWrap, HiddenFileInput, BtnSepa }
+export { PopUpWrap, AddContactsPopUp, ProfilePic, PicWrap, HiddenFileInput, BtnSepa, LaberForInput }

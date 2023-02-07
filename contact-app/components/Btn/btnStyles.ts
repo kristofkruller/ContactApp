@@ -107,6 +107,7 @@ const BtnWrap = styled.div`
 const ButtonSpinner = styled(SpinnerContainer)`
   width: 30px;
   height: 30px;
+  margin: 0 auto;
 `
 export { 
   BtnLI, 
