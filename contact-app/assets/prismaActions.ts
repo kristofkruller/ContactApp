@@ -21,14 +21,35 @@ export async function deleteContact(id) {
     await fetch(`http://localhost:3000/api/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
-    },
-    method: 'DELETE'
+      },
+      method: 'DELETE'
     }).then(response => {
       if (!response.ok) {
         throw new Error(`Error deleting contact: ${response.status}`);
       }
     })
   } catch (error) {
-   console.log(error); 
+    console.log(error); 
+  }
+}
+
+// UPDATE
+
+export async function updateContact(id, data) {
+  try {
+    await fetch(`http://localhost:3000/api/update/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(`Error deleting contact: ${response.status}`);
+      }
+      return response.json();
+    })
+  } catch (error) {
+    console.error(error); 
   }
 }

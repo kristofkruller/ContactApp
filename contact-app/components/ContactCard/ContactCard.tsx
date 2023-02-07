@@ -8,7 +8,7 @@ import {
   SettingsBlock,
   SepaDiv
 } from "./contactCardStyles"
-import { ContactContext } from '../../context/ContactContext'
+import { ContactContext, ExtendedContact } from '../../context/ContactContext'
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
 import Image from 'next/image'
@@ -70,7 +70,7 @@ const ContactCard = ({ children }) => {
       </ContactHeader>
       
       <ContactBody>
-        {contactsState.map(({id, name, phone, url}) => (
+        {contactsState.map(({ id, name, phone, email, url }) => (
             <ContactRow key={id}>
               <SepaDiv>
                 <Image
@@ -105,7 +105,13 @@ const ContactCard = ({ children }) => {
                   onClick={() => displayRowHandler(id)}
                 />
               </SettingsBlock>
-              { selectedRowId === id  && <SettingsPopUp id={id} url={url} />}
+              { selectedRowId === id  && <SettingsPopUp 
+                id={id} 
+                name={name} 
+                phone={phone} 
+                email={email} 
+                url={url}
+              />}
             </ContactRow>
           )          
         )}

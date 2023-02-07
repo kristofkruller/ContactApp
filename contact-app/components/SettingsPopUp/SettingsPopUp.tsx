@@ -1,25 +1,33 @@
 import React, { FC, useContext, useState } from 'react'
-import { SetRow, SettingsWrap } from './settingsPopUpStyles';
 import Image from 'next/image';
-import { BodyText } from '../../assets/GlobalStyles/typoStyles';
 import { useRouter } from 'next/router';
-import { deleteContact } from '../../assets/prismaActions';
+
+import { BodyText, H3 } from '../../assets/GlobalStyles/typoStyles';
+import { SetRow, SettingsWrap } from './settingsPopUpStyles';
 import DelayedSpinner from '../Btn/Spinner';
-import { OpenContext } from '../../context/OpenContext';
+
+import { deleteContact } from '../../assets/prismaActions';
 import { deleteImage } from '../../assets/firebase';
-interface SetProp {
-  id: number,
-  url: string
-}
 
-const SettingsPopUp: FC<SetProp> = ({ id, url }) => {
+import { OpenContext } from '../../context/OpenContext';
+import { ContactContext, ExtendedContact } from '../../context/ContactContext';
+import { PutLoadingContext } from '../../context/PutLoadingContext';
 
-  const { displayRowSettings } = useContext(OpenContext)
+const SettingsPopUp: FC<ExtendedContact> = ({ id, name, phone, email, url }) => {
+
+  const { displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+  const { contactsState, setToPutE } = useContext(ContactContext)
+  const { updateLoading, setUpdateLoading } = useContext(PutLoadingContext)
+
   const [isLoading, setLoading] = useState(false)
 
-  // Refresh n del
-
   const router = useRouter()
+
+  const handleEdit = async (id) => {
+    setUpdateLoading(true)
+    setToPutE(contactsState.find(e => e.id === id))
+    setOpenAddPopUp(true)
+  }
 
   const handleDelete = async (id) => {
     setLoading(true)
@@ -36,9 +44,9 @@ const SettingsPopUp: FC<SetProp> = ({ id, url }) => {
 
   return (
     <>
-    {isLoading ? <DelayedSpinner /> :
+    {isLoading || updateLoading ? <DelayedSpinner /> :
     <SettingsWrap>
-      <SetRow>
+      <SetRow onClick={() => handleEdit(id)}>
         <Image 
           alt='contact profile placeholder'
           src={"/icons/set.svg"}

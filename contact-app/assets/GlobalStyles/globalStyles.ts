@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    transition: var(--transition-basic);
   }
   *:focus {
     outline: none;

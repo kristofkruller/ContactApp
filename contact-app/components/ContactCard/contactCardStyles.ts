@@ -5,7 +5,7 @@ const ContactWrap = styled.main`
 
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 10% auto;
 `
 const ContactHeader = styled.section`
   display: flex;
@@ -26,6 +26,12 @@ const ContactRow = styled.div`
   justify-content: space-between;
 
   padding: 12px 0;
+
+  & > div[class*="Spinner"] {
+    max-height: 68px;
+    justify-content: flex-end;
+    margin-right: 44px;
+  }
 `
 const ProfileBlock = styled.div`
   display: block;

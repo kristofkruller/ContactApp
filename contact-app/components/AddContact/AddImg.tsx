@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BtnSepa, HiddenFileInput, LaberForInput, PicWrap, ProfilePic } from './formStyles'
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
 import Image from 'next/image'
@@ -8,11 +8,13 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { ButtonSpinner } from '../Btn/btnStyles'
 import { ContactContext } from '../../context/ContactContext'
 import { Msg } from '../../assets/GlobalStyles/typoStyles'
+import { PutLoadingContext } from '../../context/PutLoadingContext'
 
 const AddImg = () => {
 
   // this SRC is the subject of submit action
-  const { profileSrc, setProfileSrc, imgUpLoad, setImgUpload } = useContext(ContactContext)
+  const { profileSrc, setProfileSrc, imgUpLoad, setImgUpload, updateE } = useContext(ContactContext)
+  const { updateLoading } = useContext(PutLoadingContext)
 
   // local
   const [loading, isLoading] = useState(false)
@@ -51,9 +53,19 @@ const AddImg = () => {
     setProfileSrc("")
   }
 
+  const mountingViaEdit = () => {
+    setProfileSrc(updateE.url)
+    setImgUpload(updateE.url)
+  }
+
+  useEffect(() => {
+    if (!updateLoading) return
+    mountingViaEdit();
+  },[])
+
   return (
     <PicWrap>
-      {(!imgUpLoad || imgUpLoad.length < 1) ?
+      {(!imgUpLoad || imgUpLoad.length < 1 && !updateLoading) ?
         <ProfilePic
             alt='contact profile placeholder'
             src={"/icons/placeholder.png"}
@@ -77,16 +89,16 @@ const AddImg = () => {
           <Msg>{imgUpLoad.name}</Msg>
 
         </div>
-        : 
-        <ProfilePic
-            alt='contact profile placeholder'
-            src={profileSrc}
-            width={88}
-            height={88}
-        />
+        :
+          <ProfilePic
+              alt='contact profile placeholder'
+              src={updateLoading ? updateE.url : profileSrc}
+              width={88}
+              height={88}
+          />
       }
       { 
-        loading ? <ButtonSpinner /> :
+        loading && !updateLoading ?  <ButtonSpinner /> : updateLoading ? <></> : 
         <>
           <HiddenFileInput ref={Input} type="file" onChange={event => uploadOnChange(event)} id="HiddenFileInput"/>
           { !profileSrc || profileSrc.length < 1 ? 

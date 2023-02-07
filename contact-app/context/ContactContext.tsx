@@ -3,7 +3,7 @@ import { createContext, SetStateAction, useState } from "react";
 export interface DefaultContextProps {
   children: React.ReactNode
 }
-interface ExtendedContact {
+export interface ExtendedContact {
   id: number;
   name: string;
   phone: string;
@@ -19,14 +19,18 @@ export const ContactContext = createContext<{
   profileSrc: string,
   setProfileSrc: SetStateAction<any>,
   imgUpLoad: File | null, 
-  setImgUpload: SetStateAction<any>
+  setImgUpload: SetStateAction<any>,
+  updateE: ExtendedContact,
+  setToPutE: SetStateAction<any>
 }>({
   contactsState: [],
   setContactData: () => {},
   profileSrc: "",
   setProfileSrc: () => {},
   imgUpLoad: null, 
-  setImgUpload: () => {}
+  setImgUpload: () => {},
+  updateE: null,
+  setToPutE: () => {}
 })
 
 //provider
@@ -35,13 +39,17 @@ export const ContactProvider = ({ children }: DefaultContextProps) => {
   const [contactsState, setContactData] = useState([])
   const [imgUpLoad, setImgUpload] = useState(null)
   const [profileSrc, setProfileSrc] = useState("")
+  const [updateE, setToPutE] = useState(null)
+
   const value = {
     contactsState,
     setContactData,
     profileSrc, 
     setProfileSrc,
     imgUpLoad, 
-    setImgUpload
+    setImgUpload,
+    updateE,
+    setToPutE
   }
 
   return <ContactContext.Provider value={value}>{children}</ContactContext.Provider>

@@ -109,6 +109,22 @@ const ButtonSpinner = styled(SpinnerContainer)`
   height: 30px;
   margin: 0 auto;
 `
+const ExitButton = styled.div`
+  width: 44px;
+  height: 44px;
+  background-color: ${({theme}) => theme.colors.primary};
+  color: ${({theme}) => theme.colors.focused};
+  opacity: .56;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: .7;
+  }
+`
+
 export { 
   BtnLI, 
   SecondaryBtnLI, 
@@ -118,5 +134,6 @@ export {
   PrimaryBtnI, 
   SecondaryBtnI,
   BtnWrap, 
-  ButtonSpinner
+  ButtonSpinner,
+  ExitButton
 }

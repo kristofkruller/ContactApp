@@ -9,6 +9,8 @@ const SettingsWrap = styled.section`
   align-items: flex-start;
 
   background-color: ${({ theme }) => theme.colors.focused};
+
+  position: relative;
 `
 const SetRow = styled.div`
   display: flex;
