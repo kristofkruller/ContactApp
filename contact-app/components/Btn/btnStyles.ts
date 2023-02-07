@@ -1,9 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { Shake } from "../../assets/GlobalStyles/animStyles";
 import { SpinnerContainer } from "./Spinner";
 
 // L = withLabel, I = withIcon
 
+const BorderOnBtn = keyframes`
+    to {
+      --border-angle: 1turn;
+    }
+`
+
 const BtnLI = styled.button`
+  @property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+  }
+
+  --border-size: 3px;
+  --border-angle: 0turn;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,11 +31,9 @@ const BtnLI = styled.button`
   width: auto;
   height: 40px;
   gap: 8px;
-
+  background-color: ${({theme}) => theme.colors.secondary};
   color: ${({theme}) => theme.colors.primary};
-  background: ${({theme}) => theme.colors.actions};
-  border-radius: 8px;
-  border-color: transparent;
+  border-radius: 4px;
 
   //font
   font-family: 'Lexend', sans-serif;
@@ -30,11 +44,10 @@ const BtnLI = styled.button`
 
   &:hover {
     transition: var(--transition-basic);
-    background-color: ${({theme}) => theme.colors.secondary};
+    animation: ${Shake} .9s linear infinite;
   }
   &:active, &:focus {
     transition: var(--transition-basic);
-    background-color: ${({theme}) => theme.colors.pressed};
   }
 
   & > label {
@@ -45,9 +58,30 @@ const BtnLI = styled.button`
     cursor: pointer;
   }
 `
-
+const PrimaryBtnLIAnim = styled(BtnLI)`
+  // invoke anim
+  background-image: conic-gradient(
+      from var(--border-angle),
+      #213,
+      #112 50%,
+      #213
+    ),
+    conic-gradient(from var(--border-angle), black 20%, #08f, #f03
+  );
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: ${BorderOnBtn} 15s linear infinite forwards;
+  &:hover, &:active, &:focus {
+    animation: ${BorderOnBtn} 15s linear infinite forwards;
+    transform: scale(1.05);
+  }
+`
 const SecondaryBtnLI = styled(BtnLI)`
   background-color: transparent;
+
   &:hover {
     background-color: ${({theme}) => theme.colors.hovered};
   }
@@ -125,6 +159,9 @@ const ExitButton = styled.div`
   }
 `
 
+// decor only, anim
+
+
 export { 
   BtnLI, 
   SecondaryBtnLI, 
@@ -135,5 +172,6 @@ export {
   SecondaryBtnI,
   BtnWrap, 
   ButtonSpinner,
-  ExitButton
+  ExitButton,
+  PrimaryBtnLIAnim
 }

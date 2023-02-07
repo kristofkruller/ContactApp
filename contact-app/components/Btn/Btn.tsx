@@ -6,7 +6,8 @@ import {
   PrimaryBtnL, 
   SecondaryBtnL, 
   PrimaryBtnI, 
-  SecondaryBtnI
+  SecondaryBtnI,
+  PrimaryBtnLIAnim
 } from "./btnStyles"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,7 +23,8 @@ const BUTTON_TYPE_CLASSES = {
   PrimaryBtnL: "PrimaryBtnL", 
   SecondaryBtnL: "SecondaryBtnL", 
   PrimaryBtnI: "PrimaryBtnI", 
-  SecondaryBtnI: "SecondaryBtnI"
+  SecondaryBtnI: "SecondaryBtnI",
+  PrimaryBtnLIAnim: "PrimaryBtnLIAnim"
 };
 
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.BtnLI) =>
@@ -34,6 +36,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.BtnLI) =>
     [BUTTON_TYPE_CLASSES.SecondaryBtnL]: SecondaryBtnL,
     [BUTTON_TYPE_CLASSES.PrimaryBtnI]: PrimaryBtnI,
     [BUTTON_TYPE_CLASSES.SecondaryBtnI]: SecondaryBtnI,
+    [BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim]: PrimaryBtnLIAnim
   }[buttonType]);
 
 const Btn: FC<ButtonProps> = ({ children, buttonType, ...otherProps }) => {

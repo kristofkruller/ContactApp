@@ -11,11 +11,6 @@ const ContactWrap = styled.main`
     left: 0;
     top: 10rem;
   }
-
-  & > div[class*="DecorLineY"]:first-of-type {
-    
-  }
-
 `
 const ContactHeader = styled.section`
   display: flex;
@@ -83,19 +78,18 @@ const DecorLineX = styled.div`
 const DecorLineY = styled.div`
   height: 100vh;
   width: 1px;
-
+  top: 0;
+  right: calc(calc(100vw - 768px) / 2);
   position: absolute;
-
+`
+const DecorLineYLeft = styled(DecorLineY)`
+  right: unset;
+  left: calc(calc(100vw - 768px) / 2);
 `
 
-// @keyframes DecorLineBg = {
-//   0% {
-
-//   }
-//   100% {
-
-//   }
-// }
+const DecorLineBg = keyframes`
+  
+`
 
 export {
   ContactWrap,
@@ -106,5 +100,6 @@ export {
   SettingsBlock,
   SepaDiv,
   DecorLineX,
-  DecorLineY
+  DecorLineY,
+  DecorLineYLeft
 }

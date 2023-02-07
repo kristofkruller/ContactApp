@@ -13,7 +13,8 @@ import {
   SettingsBlock,
   SepaDiv,
   DecorLineX,
-  DecorLineY
+  DecorLineY,
+  DecorLineYLeft
 } from "./contactCardStyles"
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
@@ -36,7 +37,7 @@ const ContactCard = ({ children }) => {
     <ContactWrap>
       <DecorLineX />
       <DecorLineX />
-      <DecorLineY />
+      <DecorLineYLeft />
       <DecorLineY />
       <ContactHeader>
         <H1>Contacts</H1>
@@ -56,7 +57,7 @@ const ContactCard = ({ children }) => {
             width={24}
             height={24}
           />
-          <Btn buttonType={BUTTON_TYPE_CLASSES.BtnLI} onClick={() => setOpenAddPopUp(true)}>
+          <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim} onClick={() => setOpenAddPopUp(true)}>
             <Image 
               alt='plus sign for add img'
               src={"/icons/plus.svg"}

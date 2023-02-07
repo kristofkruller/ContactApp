@@ -102,7 +102,7 @@ const AddImg = () => {
         <>
           <HiddenFileInput ref={Input} type="file" onChange={event => uploadOnChange(event)} id="HiddenFileInput"/>
           { !profileSrc || profileSrc.length < 1 ? 
-            <Btn buttonType={BUTTON_TYPE_CLASSES.BtnLI} type="button" onClick={upLoadImg} style={{padding: 0}}>
+            <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim} type="button" onClick={upLoadImg} style={{padding: 0}}>
               { (!imgUpLoad || imgUpLoad.length < 1) ? 
                 <LaberForInput htmlFor="HiddenFileInput">
                   <Image 
@@ -125,7 +125,7 @@ const AddImg = () => {
               }
             </Btn> :
             <BtnSepa>
-              <Btn buttonType={BUTTON_TYPE_CLASSES.BtnLI} type="button" onClick={changePicture}>
+              <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim} type="button" onClick={changePicture}>
                 <Image 
                   alt='refresh img'
                   src={"/icons/refresh.svg"}
