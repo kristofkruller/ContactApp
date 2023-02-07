@@ -1,11 +1,21 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const ContactWrap = styled.main`
   width: 768px;
 
   display: flex;
   flex-direction: column;
-  margin: 10% auto;
+  margin: 10rem auto;
+
+  & > div[class*="DecorLineX"]:first-of-type {
+    left: 0;
+    top: 10rem;
+  }
+
+  & > div[class*="DecorLineY"]:first-of-type {
+    
+  }
+
 `
 const ContactHeader = styled.section`
   display: flex;
@@ -62,6 +72,31 @@ const SepaDiv = styled.div`
   }
 `
 
+// design only
+const DecorLineX = styled.div`
+  height: 1px;
+  width: 100vw;
+  left: 0;
+  top: calc(10rem + 108px);
+  position: absolute;
+`
+const DecorLineY = styled.div`
+  height: 100vh;
+  width: 1px;
+
+  position: absolute;
+
+`
+
+// @keyframes DecorLineBg = {
+//   0% {
+
+//   }
+//   100% {
+
+//   }
+// }
+
 export {
   ContactWrap,
   ContactHeader,
@@ -69,5 +104,7 @@ export {
   ContactRow,
   ProfileBlock,
   SettingsBlock,
-  SepaDiv
+  SepaDiv,
+  DecorLineX,
+  DecorLineY
 }

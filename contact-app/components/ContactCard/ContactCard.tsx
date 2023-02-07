@@ -1,4 +1,9 @@
 import React, { useContext, useState } from 'react'
+import Image from 'next/image'
+
+import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
+import SettingsPopUp from '../SettingsPopUp/SettingsPopUp'
+
 import {
   ContactWrap,
   ContactHeader,
@@ -6,20 +11,20 @@ import {
   ContactRow,
   ProfileBlock,
   SettingsBlock,
-  SepaDiv
+  SepaDiv,
+  DecorLineX,
+  DecorLineY
 } from "./contactCardStyles"
-import { ContactContext, ExtendedContact } from '../../context/ContactContext'
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
-import Image from 'next/image'
+
+import { ContactContext } from '../../context/ContactContext'
 import { OpenContext } from '../../context/OpenContext'
-import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
-import SettingsPopUp from '../SettingsPopUp/SettingsPopUp'
 
 const ContactCard = ({ children }) => {
 
   const { contactsState } = useContext(ContactContext)
-  const { displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+  const { setOpenAddPopUp } = useContext(OpenContext)
 
   const [selectedRowId, setSelectedRowId] = useState(null);
   
@@ -29,7 +34,10 @@ const ContactCard = ({ children }) => {
 
   return (
     <ContactWrap>
-
+      <DecorLineX />
+      <DecorLineX />
+      <DecorLineY />
+      <DecorLineY />
       <ContactHeader>
         <H1>Contacts</H1>
         <SettingsBlock>
