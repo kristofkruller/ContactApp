@@ -49,6 +49,11 @@ const SepaDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+
+  img {
+    cursor: default;
+    border-radius: 12px;
+  }
 `
 
 export {

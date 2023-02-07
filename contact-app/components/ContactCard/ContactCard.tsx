@@ -14,11 +14,12 @@ import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
 import Image from 'next/image'
 import { OpenContext } from '../../context/ContactContext/OpenContext'
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
+import SettingsPopUp from '../SettingsPopUp/SettingsPopUp'
 
 const ContactCard = ({ children }) => {
 
   const { contactsState } = useContext(ContactContext)
-  const { displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+  const { rowSettings, displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
 
   return (
     <ContactWrap>
@@ -37,7 +38,7 @@ const ContactCard = ({ children }) => {
             borderRadius: "12px"
           }}
             alt='user profile picture'
-            src={"/images/placeholder.png"}
+            src={"/icons/placeholder.png"}
             width={24}
             height={24}
           />
@@ -98,6 +99,7 @@ const ContactCard = ({ children }) => {
                   onClick={() => displayRowSettings()}
                 />
               </SettingsBlock>
+              { rowSettings && <SettingsPopUp id={id} />}
             </ContactRow>
           )          
         )}

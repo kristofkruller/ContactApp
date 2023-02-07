@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { PrismaClient } from '@prisma/client'
 import ContactCard from '../components/ContactCard/ContactCard';
 import AddContact from '../components/AddContact/AddContact';
-import { Suspense, useContext, useEffect } from 'react';
+import { startTransition, Suspense, useContext, useEffect } from 'react';
 import { ContactContext } from '../context/ContactContext/ContactContext';
 import { OpenContext } from '../context/ContactContext/OpenContext';
 import Spinner from '../components/Btn/Spinner';
@@ -11,13 +11,13 @@ const prisma = new PrismaClient();
 
 export default function Home( {contacts} ) {
 
-  const { setContactData } = useContext(ContactContext);
+  const { setContactData, contactsState } = useContext(ContactContext);
   const { openAddPopUp } = useContext(OpenContext);
   
   // fill up state with init val
 
-  useEffect(() => {
-    setContactData(contacts);
+  useEffect(() => { 
+    startTransition( () => setContactData(contacts))
   }, [])
 
   return (

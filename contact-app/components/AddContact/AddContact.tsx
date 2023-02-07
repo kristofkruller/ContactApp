@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import { AddContactsPopUp, PopUpWrap } from './formStyles';
 import { InputWrap, InputField, Label } from '../../assets/GlobalStyles/inputFieldStyles';
 import { H2 } from '../../assets/GlobalStyles/typoStyles';
-import { saveContact } from '../../assets/prismaActions';
-import { ContactContext } from '../../context/ContactContext/ContactContext';
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn';
 import { BtnWrap, ButtonSpinner } from '../Btn/btnStyles';
 import AddImg from './AddImg';
+
+import { saveContact } from '../../assets/prismaActions';
+
+import { ContactContext } from '../../context/ContactContext/ContactContext';
 import { OpenContext } from '../../context/ContactContext/OpenContext';
 
 interface ContactCreateInput {

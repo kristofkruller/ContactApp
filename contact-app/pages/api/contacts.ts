@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { PrismaClient, Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {

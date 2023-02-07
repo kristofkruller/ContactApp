@@ -6,10 +6,12 @@ import { DefaultContextProps } from "./ContactContext";
 export const OpenContext = createContext<{
   openAddPopUp: boolean,
   setOpenAddPopUp: SetStateAction<any>,
+  rowSettings: boolean,
   displayRowSettings: () => void
 }>({
   openAddPopUp: false,
   setOpenAddPopUp: () => {},
+  rowSettings: false,
   displayRowSettings: () => {}
 })
 
@@ -24,6 +26,7 @@ export const OpenProvider = ({ children }: DefaultContextProps) => {
   const value = {
     openAddPopUp,
     setOpenAddPopUp,
+    rowSettings,
     displayRowSettings
   }
 
