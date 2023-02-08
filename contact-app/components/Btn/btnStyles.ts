@@ -94,15 +94,6 @@ const SecondaryBtnLI = styled(BtnLI)`
     background-color: ${({theme}) => theme.colors.focused};
   }
 `
-const SpecialBtnLI = styled(BtnLI)`
-  background: linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), #141414;
-  &:hover {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), #141414;  
-  }
-  &:active, &:focus {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), #141414;
-  }
-`
 
 // label only
 
@@ -149,27 +140,57 @@ const ButtonSpinner = styled(SpinnerContainer)`
   margin: 0 auto;
 `
 const ExitButton = styled.div`
-  width: 44px;
-  height: 44px;
-  background-color: ${({theme}) => theme.colors.primary};
+  width: 34px;
+  height: 34px;
+  background-color: rgba(0,0,0,.7);
   color: ${({theme}) => theme.colors.focused};
-  opacity: .56;
+  opacity: 1;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  margin-left: auto;
 
+  & > div {
+    transform: translate(-7px, -5px) rotate(0deg);
+  }
+  & > div:first-of-type {
+    transform: translate(8px, 5px) rotate(0deg);  
+  }
+  &::before {
+    content: "CLOSE";
+    position: absolute;
+    font-size: 8px;
+    font-weight: 600;
+    font-family: 'Lexend';
+    color: ${({theme}) => theme.colors.gelb};
+    opacity: 1;
+  }
   &:hover {
-    opacity: .7;
+    & > div {
+      transform: translate(-8px, 0px) rotate(-45deg);
+      background-color: ${({theme}) => theme.colors.gelb};
+    }
+    & > div:first-of-type {
+      transform: translate(8px, 0px) rotate(45deg);
+      background-color: ${({theme}) => theme.colors.gelb};
+    }
+    &::before {
+      opacity: 0;
+    }
   }
 `
-
+const ExitButtonLines = styled.div`
+  height: 1.5px;
+  width: 15px;
+  background-color: transparent;
+`
 // decor only, anim
 
 export { 
   BtnLI, 
   SecondaryBtnLI, 
-  SpecialBtnLI, 
   PrimaryBtnL, 
   SecondaryBtnL, 
   PrimaryBtnI, 
@@ -177,5 +198,6 @@ export {
   BtnWrap, 
   ButtonSpinner,
   ExitButton,
-  PrimaryBtnLIAnim
+  PrimaryBtnLIAnim,
+  ExitButtonLines
 }

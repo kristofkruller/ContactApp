@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { IconShakeNScale, SpinAround } from "../../assets/GlobalStyles/animStyles";
+import { DecorLineXBg, DecorLineYBg, IconShakeNScale, SpinAround } from "../../assets/GlobalStyles/animStyles";
 
 const ContactWrap = styled.main`
   width: 768px;
@@ -11,6 +11,7 @@ const ContactWrap = styled.main`
   & > div[class*="DecorLineX"]:first-of-type {
     left: 0;
     top: 10rem;
+    animation-duration: 17s;
   }
 `
 const ContactHeader = styled.section`
@@ -38,6 +39,11 @@ const ContactRow = styled.div`
     justify-content: flex-end;
     margin-right: 44px;
   }
+
+  /* div[class*="ExitButton"], div[class*="ExitButton"] * {
+    position: absolute;
+    right: calc(calc(100vw - 768px)/2);
+  } */
 `
 const ProfileBlock = styled.div`
   display: block;
@@ -57,10 +63,12 @@ const SettingsBlock = styled.div`
     cursor: pointer;
   }
   img[alt*="settings"], img[alt*="light"] {
-    animation: ${SpinAround} 10s linear infinite forwards;
+    animation: ${SpinAround} 15s linear infinite forwards;
+    opacity: .8;
   }
   img[alt*="settings"]:hover, img[alt*="light"]:hover {
-    animation: ${SpinAround} 3s linear infinite backwards;
+    animation: ${SpinAround} 5s linear infinite backwards;
+    opacity: 1;
   }
   img[alt*="user"]:hover, img[alt*="mute"]:hover, img[alt*="headphone"]:hover {
     animation: ${IconShakeNScale} .8s linear infinite forwards;
@@ -84,7 +92,8 @@ const DecorLineX = styled.div`
   left: 0;
   top: calc(10rem + 108px);
   position: absolute;
-  background-color: ${({theme}) => theme.colors.actions};
+  transition: all 3s ease-in-out;
+  animation: ${DecorLineXBg} 15s ease-in-out infinite forwards;
 `
 const DecorLineY = styled.div`
   height: 100vh;
@@ -92,11 +101,13 @@ const DecorLineY = styled.div`
   top: 0;
   right: calc(calc(100vw - 768px) / 2);
   position: absolute;
-  background-color: ${({theme}) => theme.colors.actions};
+  animation: ${DecorLineYBg} 12s ease-in-out infinite backwards;
 `
 const DecorLineYLeft = styled(DecorLineY)`
   right: unset;
   left: calc(calc(100vw - 768px) / 2);
+  animation-duration: 15s;
+  animation-direction: reverse;
 `
 
 export {

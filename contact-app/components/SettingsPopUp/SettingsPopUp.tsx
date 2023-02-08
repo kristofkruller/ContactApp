@@ -2,7 +2,7 @@ import React, { FC, useContext, useState } from 'react'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { BodyText, H3 } from '../../assets/GlobalStyles/typoStyles';
+import { BodyText } from '../../assets/GlobalStyles/typoStyles';
 import { SetRow, SettingsWrap } from './settingsPopUpStyles';
 import DelayedSpinner from '../Btn/Spinner';
 
@@ -12,10 +12,15 @@ import { deleteImage } from '../../assets/firebase';
 import { OpenContext } from '../../context/OpenContext';
 import { ContactContext, ExtendedContact } from '../../context/ContactContext';
 import { PutLoadingContext } from '../../context/PutLoadingContext';
+import { ExitButton, ExitButtonLines } from '../Btn/btnStyles';
 
-const SettingsPopUp: FC<ExtendedContact> = ({ id, name, phone, email, url }) => {
+interface SettingsPopUpType extends ExtendedContact{
+  style?:React.CSSProperties
+}
 
-  const { displayRowSettings, setOpenAddPopUp } = useContext(OpenContext)
+const SettingsPopUp: FC<SettingsPopUpType> = ({ id, url }, ...otherProps) => {
+
+  const { displayRowSettings, setOpenAddPopUp, rowSettings } = useContext(OpenContext)
   const { contactsState, setToPutE } = useContext(ContactContext)
   const { updateLoading, setUpdateLoading } = useContext(PutLoadingContext)
 
@@ -45,15 +50,29 @@ const SettingsPopUp: FC<ExtendedContact> = ({ id, name, phone, email, url }) => 
   return (
     <>
     {isLoading || updateLoading ? <DelayedSpinner /> :
+    <>
     <SettingsWrap>
-      <SetRow onClick={() => handleEdit(id)}>
-        <Image 
+      <SetRow>
+        <Image  onClick={() => handleEdit(id)}
           alt='contact profile placeholder'
           src={"/icons/set.svg"}
           width={16}
           height={16}
         />
-        <BodyText>Edit</BodyText>
+        <BodyText style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: "100%",
+          height: "44px"
+        }}
+        onClick={() => handleEdit(id)} 
+        >Edit</BodyText>
+        
+        <ExitButton onClick={() => displayRowSettings()}>
+          <ExitButtonLines />
+          <ExitButtonLines />
+        </ExitButton>
       </SetRow>
       <SetRow>
         <Image 
@@ -74,6 +93,9 @@ const SettingsPopUp: FC<ExtendedContact> = ({ id, name, phone, email, url }) => 
         <BodyText>Remove</BodyText>
       </SetRow>
     </SettingsWrap>
+
+
+    </>
     }
     </>
   )

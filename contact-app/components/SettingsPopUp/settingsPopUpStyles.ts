@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconShakeNScale } from "../../assets/GlobalStyles/animStyles";
 
 const SettingsWrap = styled.section`
   width: 219px;
@@ -13,6 +14,8 @@ const SettingsWrap = styled.section`
   position: relative;
 `
 const SetRow = styled.div`
+  --shade: inset var(--w) 0 0 0 ${({theme}) => theme.colors.blue};
+  --w: 0px;
   display: flex;
   height: 44px;
   width: 100%;
@@ -21,9 +24,18 @@ const SetRow = styled.div`
   color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   padding: 12px 10px;
-
+  box-shadow: var(--shade);
   img {
     opacity: .56;
+  }
+
+  &:hover {
+    --w: 219px;
+
+    img {
+      opacity: 1;
+      animation: ${IconShakeNScale} .7s ease-in-out infinite forwards;
+    }
   }
   //nextImg n BodyText inside
 `

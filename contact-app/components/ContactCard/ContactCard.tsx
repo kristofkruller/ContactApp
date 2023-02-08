@@ -13,31 +13,33 @@ import {
   SettingsBlock,
   SepaDiv,
   DecorLineX,
-  DecorLineY,
-  DecorLineYLeft
+  DecorLineY
 } from "./contactCardStyles"
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
 
 import { ContactContext } from '../../context/ContactContext'
 import { OpenContext } from '../../context/OpenContext'
+import PulseDot from '../Btn/PulseDot'
 
 const ContactCard = ({ children }) => {
 
   const { contactsState } = useContext(ContactContext)
-  const { setOpenAddPopUp } = useContext(OpenContext)
+  const { setOpenAddPopUp, displayRowSettings, rowSettings } = useContext(OpenContext)
 
   const [selectedRowId, setSelectedRowId] = useState(null);
   
   const displayRowHandler = (id) => {
+    if (!id || id.lenght < 1) return
     setSelectedRowId(id);
+    displayRowSettings()
   };
 
   return (
     <ContactWrap>
       <DecorLineX />
       <DecorLineX />
-      <DecorLineYLeft />
+      <DecorLineY />
       <DecorLineY />
       <ContactHeader>
         <H1>Contacts</H1>
@@ -68,7 +70,7 @@ const ContactCard = ({ children }) => {
           </Btn>
           <Image style={{ 
             position: "absolute",
-            right: "calc(calc(100vw - 898px) / 2)"
+            right: "27%",
           }}
             alt='light switch'
             src={"/icons/light.svg"}
@@ -92,8 +94,9 @@ const ContactCard = ({ children }) => {
                   <H3>{name}</H3>
                   <Label>{phone}</Label>
                 </ProfileBlock>
-              </SepaDiv>
-              <SettingsBlock>
+              </SepaDiv> 
+              <SettingsBlock 
+              style={rowSettings ? {display: "none"} : {display: ""} }>
                 <Image
                   alt='mute button'
                   src={"/icons/mute.svg"}
@@ -114,13 +117,15 @@ const ContactCard = ({ children }) => {
                   onClick={() => displayRowHandler(id)}
                 />
               </SettingsBlock>
-              { selectedRowId === id  && <SettingsPopUp 
+              
+              { (selectedRowId === id && rowSettings) ? 
+              <SettingsPopUp style={rowSettings ? {opacity: 0} : {opacity: 1}}
                 id={id} 
                 name={name} 
                 phone={phone} 
                 email={email} 
                 url={url}
-              />}
+              /> :  null }
             </ContactRow>
           )          
         )}
