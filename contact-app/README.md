@@ -33,6 +33,8 @@ please create an .env file in root of contact-app and put inside:
 DATABASE_URL="file:./dev.db"
 FIREBASE_API_KEY="AIzaSyCzyQeBaFDOeAbL_2OUwIODeDiDChaeyCc"
 
+```sometimes prisma does not like this way and there can be an error, then it would be great if you jus fill the .env DATABASE_URL part by hand then it will be ok```
+
 ## How to use
 
 All CRUD operations are working. I should've use Strapi but SQLite was a demand so I did it with PRISMA ORM, and for image handeling i used Firebase Storage. 
@@ -45,7 +47,7 @@ create -> inputs full without img
 update -> any field or img (change or delete)
 delete full
 
-by image upload i put a submit step in, to prevent unwanted uploads, so pick an img and after that you should submit to be uploaded
+By image upload i put a submit step in, to prevent unwanted uploads, so pick an img and after that you should submit to be uploaded
 
 ### I did not implement 
 `YET` 
