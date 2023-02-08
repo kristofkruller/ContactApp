@@ -13,7 +13,8 @@ import {
   SettingsBlock,
   SepaDiv,
   DecorLineX,
-  DecorLineY
+  DecorLineY,
+  DecorLineYLeft
 } from "./contactCardStyles"
 import { H1, H3 } from '../../assets/GlobalStyles/typoStyles'
 import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
@@ -44,7 +45,7 @@ const ContactCard = ({ children }) => {
     <ContactWrap>
       <DecorLineX />
       <DecorLineX />
-      <DecorLineY />
+      <DecorLineYLeft />
       <DecorLineY />
       <ContactHeader>
         <H1>Contacts</H1>
