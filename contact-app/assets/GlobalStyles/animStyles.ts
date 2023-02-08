@@ -50,5 +50,36 @@ const Shake = keyframes`
 				transform : translateX(-2px);
 			}
 `
+const DecorLineBg = keyframes`
+  
+`
 
-export { Shake }
+const SpinAround = keyframes`
+  to { transform: rotate(360deg) }
+`
+
+const IconShakeNScale = keyframes`
+  0% {
+    transform: scale(1) rotate(0);
+  }
+  15% {
+    transform: scale(1.05) rotate(20deg);
+  }
+  30% {
+    transform: scale(1) rotate(0);
+  }
+  40% {
+    transform: scale(1.1) rotate(-20deg);
+  }
+  65% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  75% {
+    transform: scale(1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+`
+
+export { Shake, IconShakeNScale, SpinAround }

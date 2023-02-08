@@ -68,7 +68,7 @@ const ContactCard = ({ children }) => {
           </Btn>
           <Image style={{ 
             position: "absolute",
-            right: "27%",
+            right: "calc(calc(100vw - 898px) / 2)"
           }}
             alt='light switch'
             src={"/icons/light.svg"}

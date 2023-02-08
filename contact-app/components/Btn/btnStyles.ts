@@ -60,13 +60,18 @@ const BtnLI = styled.button`
 `
 const PrimaryBtnLIAnim = styled(BtnLI)`
   // invoke anim
-  background-image: conic-gradient(
+  background-image: 
+    conic-gradient(
       from var(--border-angle),
-      #213,
-      #112 50%,
-      #213
+      ${({theme}) => theme.colors.actions},
+      ${({theme}) => theme.colors.bg} 50%,
+      ${({theme}) => theme.colors.actions}
     ),
-    conic-gradient(from var(--border-angle), black 20%, #08f, #f03
+    conic-gradient(
+      from var(--border-angle), 
+      ${({theme}) => theme.colors.bg} 20%, 
+      ${({theme}) => theme.colors.blue},
+      ${({theme}) => theme.colors.gelb}
   );
   background-size: calc(100% - (var(--border-size) * 2))
       calc(100% - (var(--border-size) * 2)),
@@ -160,7 +165,6 @@ const ExitButton = styled.div`
 `
 
 // decor only, anim
-
 
 export { 
   BtnLI, 

@@ -9,6 +9,7 @@ import { ButtonSpinner } from '../Btn/btnStyles'
 import { ContactContext } from '../../context/ContactContext'
 import { Msg } from '../../assets/GlobalStyles/typoStyles'
 import { PutLoadingContext } from '../../context/PutLoadingContext'
+import PulseDot from '../Btn/PulseDot'
 
 const AddImg = () => {
 
@@ -98,7 +99,7 @@ const AddImg = () => {
           />
       }
       { 
-        loading && !updateLoading ?  <ButtonSpinner /> : updateLoading ? <></> : 
+        loading && !updateLoading ?  <PulseDot /> : updateLoading ? <></> : 
         <>
           <HiddenFileInput ref={Input} type="file" onChange={event => uploadOnChange(event)} id="HiddenFileInput"/>
           { !profileSrc || profileSrc.length < 1 ? 

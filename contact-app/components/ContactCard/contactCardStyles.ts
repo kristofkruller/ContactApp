@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { IconShakeNScale, SpinAround } from "../../assets/GlobalStyles/animStyles";
 
 const ContactWrap = styled.main`
   width: 768px;
@@ -55,6 +56,15 @@ const SettingsBlock = styled.div`
   img {
     cursor: pointer;
   }
+  img[alt*="settings"], img[alt*="light"] {
+    animation: ${SpinAround} 10s linear infinite forwards;
+  }
+  img[alt*="settings"]:hover, img[alt*="light"]:hover {
+    animation: ${SpinAround} 3s linear infinite backwards;
+  }
+  img[alt*="user"]:hover, img[alt*="mute"]:hover, img[alt*="headphone"]:hover {
+    animation: ${IconShakeNScale} .8s linear infinite forwards;
+  }
 `
 const SepaDiv = styled.div`
   display: flex;
@@ -74,6 +84,7 @@ const DecorLineX = styled.div`
   left: 0;
   top: calc(10rem + 108px);
   position: absolute;
+  background-color: ${({theme}) => theme.colors.actions};
 `
 const DecorLineY = styled.div`
   height: 100vh;
@@ -81,14 +92,11 @@ const DecorLineY = styled.div`
   top: 0;
   right: calc(calc(100vw - 768px) / 2);
   position: absolute;
+  background-color: ${({theme}) => theme.colors.actions};
 `
 const DecorLineYLeft = styled(DecorLineY)`
   right: unset;
   left: calc(calc(100vw - 768px) / 2);
-`
-
-const DecorLineBg = keyframes`
-  
 `
 
 export {

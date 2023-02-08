@@ -41,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    border-color: transparent;
     transition: var(--transition-basic);
   }
   *:focus {

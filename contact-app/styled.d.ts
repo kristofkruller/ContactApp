@@ -11,6 +11,8 @@ declare module 'styled-components' {
       pressed: string;
       hovered: string;
       focused: string;
+      blue: string;
+      gelb: string;
     };
   }
 }

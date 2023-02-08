@@ -7,7 +7,7 @@ import { deleteObject, getStorage, ref } from "firebase/storage"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCzyQeBaFDOeAbL_2OUwIODeDiDChaeyCc",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "contactapp-66a1a.firebaseapp.com",
   projectId: "contactapp-66a1a",
   storageBucket: "contactapp-66a1a.appspot.com",
