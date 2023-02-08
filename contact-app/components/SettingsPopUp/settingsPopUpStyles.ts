@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IconShakeNScale } from "../../assets/GlobalStyles/animStyles";
+import { devices } from "../../assets/GlobalStyles/globalStyles";
 
 const SettingsWrap = styled.section`
   width: 219px;
@@ -12,6 +13,14 @@ const SettingsWrap = styled.section`
   background-color: ${({ theme }) => theme.colors.focused};
 
   position: relative;
+
+  //RESPO
+
+  @media ${devices.mobileS} {
+    & {
+      background-color: rgba(0,0,0,.25);
+    }
+  }
 `
 const SetRow = styled.div`
   --shade: inset var(--w) 0 0 0 ${({theme}) => theme.colors.blue};

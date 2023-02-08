@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { Btn, BUTTON_TYPE_CLASSES } from '../Btn/Btn'
@@ -20,7 +20,6 @@ import { Label } from '../../assets/GlobalStyles/inputFieldStyles'
 
 import { ContactContext } from '../../context/ContactContext'
 import { OpenContext } from '../../context/OpenContext'
-import PulseDot from '../Btn/PulseDot'
 
 const ContactCard = ({ children }) => {
 
@@ -28,6 +27,7 @@ const ContactCard = ({ children }) => {
   const { setOpenAddPopUp, displayRowSettings, rowSettings } = useContext(OpenContext)
 
   const [selectedRowId, setSelectedRowId] = useState(null);
+  const [rowData, setRowData] = useState([])
   
   const displayRowHandler = (id) => {
     if (!id || id.lenght < 1) return
@@ -35,6 +35,11 @@ const ContactCard = ({ children }) => {
     displayRowSettings()
   };
 
+  useEffect(() => {
+    if (!contactsState || contactsState.length < 1) return
+    setRowData(contactsState)
+  },[contactsState])
+  
   return (
     <ContactWrap>
       <DecorLineX />
@@ -70,7 +75,7 @@ const ContactCard = ({ children }) => {
           </Btn>
           <Image style={{ 
             position: "absolute",
-            right: "27%",
+            right: "calc(calc(100vw - 848px) / 2);",
           }}
             alt='light switch'
             src={"/icons/light.svg"}
@@ -81,7 +86,7 @@ const ContactCard = ({ children }) => {
       </ContactHeader>
       
       <ContactBody>
-        {contactsState.map(({ id, name, phone, email, url }) => (
+        {rowData.map(({ id, name, phone, email, url }) => (
             <ContactRow key={id}>
               <SepaDiv>
                 <Image

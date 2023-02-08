@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const PulseBefore = keyframes`
@@ -38,7 +39,6 @@ const DotWrap = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
 `
 const Dot = styled.div`
   position: relative;
@@ -76,11 +76,24 @@ const Dot = styled.div`
 `
 
 const PulseDot = () => {
-  return (
+  const [showDot, setShowDot] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowDot(true);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return ( <>
+    { showDot ?
     <DotWrap>
       <Dot />
     </DotWrap>
-  )
+    : null
+    }
+  </>)
 }
 
 export default PulseDot

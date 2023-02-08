@@ -48,5 +48,20 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 `
+  /*RESPO*/
+
+  const sizes = {
+    mobileS: '375px',
+    mobileM: '420px',
+    mobileL: '555px',
+    tablet: '878px',
+  };
+
+  export const devices = {
+    mobileS: `(max-width: ${sizes.mobileS})`,
+    mobileM: `(max-width: ${sizes.mobileM})`,
+    mobileL: `(max-width: ${sizes.mobileL})`,
+    tablet: `(max-width: ${sizes.tablet})`,
+  };
 
 export default GlobalStyle

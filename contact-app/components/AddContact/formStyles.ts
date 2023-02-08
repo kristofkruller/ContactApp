@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { devices } from "../../assets/GlobalStyles/globalStyles";
 
 const PopUpWrap = styled.main`
   height: 100vh;
@@ -12,6 +13,19 @@ const PopUpWrap = styled.main`
   left: 0;
   top: 0;
   background-color: rgba(0,0,0,.4);
+
+  //RESPO
+
+  @media ${devices.mobileM} {
+    & > form {
+      max-width: unset;
+      width: 100%;
+      height: 100%;
+      & div[class*="BtnSepa"] {
+        flex-direction: column-reverse;
+      }
+    }
+  }
 `
 
 const AddContactsPopUp = styled.form`

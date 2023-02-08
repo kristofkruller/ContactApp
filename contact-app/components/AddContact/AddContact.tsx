@@ -67,6 +67,7 @@ const AddContact = () => {
     <PopUpWrap>
 
       { !updateLoading ? 
+      
       <AddContactsPopUp onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
@@ -129,7 +130,9 @@ const AddContact = () => {
           }</Btn>
         </BtnWrap>
       </AddContactsPopUp> 
-    :       
+
+    : 
+
       <AddContactsPopUp onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();

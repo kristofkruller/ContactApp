@@ -13,6 +13,7 @@ import { OpenContext } from '../../context/OpenContext';
 import { ContactContext, ExtendedContact } from '../../context/ContactContext';
 import { PutLoadingContext } from '../../context/PutLoadingContext';
 import { ExitButton, ExitButtonLines } from '../Btn/btnStyles';
+import PulseDot from '../Btn/PulseDot';
 
 interface SettingsPopUpType extends ExtendedContact{
   style?:React.CSSProperties
@@ -49,7 +50,7 @@ const SettingsPopUp: FC<SettingsPopUpType> = ({ id, url }, ...otherProps) => {
 
   return (
     <>
-    {isLoading || updateLoading ? <DelayedSpinner /> :
+    {isLoading || updateLoading ? <PulseDot /> :
     <>
     <SettingsWrap>
       <SetRow>

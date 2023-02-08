@@ -5,7 +5,6 @@ import Image from 'next/image'
 
 import { deleteImage, imgStorage } from '../../assets/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { ButtonSpinner } from '../Btn/btnStyles'
 import { ContactContext } from '../../context/ContactContext'
 import { Msg } from '../../assets/GlobalStyles/typoStyles'
 import { PutLoadingContext } from '../../context/PutLoadingContext'
@@ -48,12 +47,17 @@ const AddImg = () => {
     setProfileSrc("")
     Input.current.click()
   }
+  const handleAtUpdate = async () => {
+    await deleteImage(updateE.url)
+    setImgUpload(null)
+    setProfileSrc("")
+    Input.current.click()
+  }
   const dump = async () => {
     await deleteImage(profileSrc)
     setImgUpload(null)
     setProfileSrc("")
   }
-
   const mountingViaEdit = () => {
     setProfileSrc(updateE.url)
     setImgUpload(updateE.url)
@@ -61,6 +65,7 @@ const AddImg = () => {
 
   useEffect(() => {
     if (!updateLoading) return
+    console.log("mount")
     mountingViaEdit();
   },[])
 
@@ -93,13 +98,14 @@ const AddImg = () => {
         :
           <ProfilePic
               alt='contact profile placeholder'
-              src={updateLoading ? updateE.url : profileSrc}
+              src={profileSrc}
               width={88}
               height={88}
           />
       }
       { 
-        loading && !updateLoading ?  <PulseDot /> : updateLoading ? <></> : 
+        loading && !updateLoading ?  <PulseDot /> : 
+        // updateLoading ? <></> : 
         <>
           <HiddenFileInput ref={Input} type="file" onChange={event => uploadOnChange(event)} id="HiddenFileInput"/>
           { !profileSrc || profileSrc.length < 1 ? 
@@ -126,7 +132,7 @@ const AddImg = () => {
               }
             </Btn> :
             <BtnSepa>
-              <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim} type="button" onClick={changePicture}>
+              <Btn buttonType={BUTTON_TYPE_CLASSES.PrimaryBtnLIAnim} type="button" onClick={!updateLoading ? changePicture : handleAtUpdate}>
                 <Image 
                   alt='refresh img'
                   src={"/icons/refresh.svg"}

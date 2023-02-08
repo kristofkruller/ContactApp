@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { DecorLineXBg, DecorLineYBg, IconShakeNScale, SpinAround } from "../../assets/GlobalStyles/animStyles";
+import { devices } from "../../assets/GlobalStyles/globalStyles";
 
 const ContactWrap = styled.main`
   width: 768px;
@@ -13,6 +14,65 @@ const ContactWrap = styled.main`
     top: 10rem;
     animation-duration: 17s;
   }
+
+  //RESPO
+
+  @media ${devices.tablet} {
+    & {
+      width: 100vw;
+      margin: 20px auto;
+
+      img[alt*="light"] {
+        position: relative !important;
+        right: 0 !important;
+      }
+      div[class*="DecorLine"] {
+        display: none;
+      }
+
+      div[class*="DecorLineX"]:first-of-type {
+        display: initial;
+        top: 132px;
+        height: 2px;
+      }
+    }
+
+  }
+
+  @media ${devices.mobileL} {
+    & {
+      margin: 0;
+    }
+    & > section[class*="ContactHeader"]{ 
+      flex-direction: column;
+    }
+    div[class*="DecorLineX"]:first-of-type {
+      top: 156px;
+    }
+  }
+
+  @media ${devices.mobileS} {
+    section[class*="ContactBody"] {
+      height: calc(100vh - 156px);
+      overflow-y: scroll;
+
+      div[class*="ContactRow"] {
+        flex-direction: column;
+        max-height: none;
+        margin: 12px 0;
+        background-color: rgba(233,233,233,.15);
+        border-radius: 10px;
+
+        div[class*="SepaDiv"] {
+          padding-bottom: 15px;
+        }
+      }
+      div[class*="ContactRow"]:hover {
+        background-color: rgba(233,233,233,.45);
+      }
+    }
+  }
+
 `
 const ContactHeader = styled.section`
   display: flex;
@@ -31,7 +91,7 @@ const ContactRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  max-height: 68px;
   padding: 12px 0;
 
   & > div[class*="Spinner"] {
@@ -39,11 +99,6 @@ const ContactRow = styled.div`
     justify-content: flex-end;
     margin-right: 44px;
   }
-
-  /* div[class*="ExitButton"], div[class*="ExitButton"] * {
-    position: absolute;
-    right: calc(calc(100vw - 768px)/2);
-  } */
 `
 const ProfileBlock = styled.div`
   display: block;
@@ -66,6 +121,10 @@ const SettingsBlock = styled.div`
     animation: ${SpinAround} 15s linear infinite forwards;
     opacity: .8;
   }
+  img[alt*="more"]:hover {
+    transform: scale(1.2);
+    opacity: 1;
+  }
   img[alt*="settings"]:hover, img[alt*="light"]:hover {
     animation: ${SpinAround} 5s linear infinite backwards;
     opacity: 1;
@@ -73,11 +132,13 @@ const SettingsBlock = styled.div`
   img[alt*="user"]:hover, img[alt*="mute"]:hover, img[alt*="headphone"]:hover {
     animation: ${IconShakeNScale} .8s linear infinite forwards;
   }
+
 `
 const SepaDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: fit-content;
 
   img {
     cursor: default;

@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 export default function Home( {contacts} ) {
 
-  const { setContactData, contactsState } = useContext(ContactContext);
+  const { setContactData } = useContext(ContactContext);
   const { openAddPopUp } = useContext(OpenContext);
   
   // fill up state with init val

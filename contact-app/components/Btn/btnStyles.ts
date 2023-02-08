@@ -105,6 +105,8 @@ const SecondaryBtnL = styled(PrimaryBtnL)`
   background-color: transparent;
   &:hover {
     background-color: ${({theme}) => theme.colors.hovered};
+    animation: unset;
+    transform: scale(1.05);
   }
   &:active, &:focus {
     background-color: ${({theme}) => theme.colors.focused};
@@ -140,9 +142,9 @@ const ButtonSpinner = styled(SpinnerContainer)`
   margin: 0 auto;
 `
 const ExitButton = styled.div`
-  width: 34px;
+  width: 54px;
   height: 34px;
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0,0,0,.17);
   color: ${({theme}) => theme.colors.focused};
   opacity: 1;
   cursor: pointer;
