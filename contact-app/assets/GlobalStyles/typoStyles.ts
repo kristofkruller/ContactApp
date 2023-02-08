@@ -30,6 +30,7 @@ const H2 = styled(Glysa)`
 const H3 = styled(Lexend)`
   line-height: 24px;
   font-size: 16px;
+  text-align: start;
 `
 const BodyText = styled(Lexend)`
   line-height: 20px;

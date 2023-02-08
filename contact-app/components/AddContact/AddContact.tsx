@@ -20,10 +20,13 @@ interface ContactCreateInput {
   url: string
 }
 
+interface UpdateCreateInput extends ContactCreateInput {
+  id: number
+}
 const AddContact = () => {
 
   const { setContactData, contactsState, profileSrc, setProfileSrc, setImgUpload, setToPutE, updateE } = useContext(ContactContext)
-  const { setOpenAddPopUp } = useContext(OpenContext)
+  const { setOpenAddPopUp, setRowSettings } = useContext(OpenContext)
   const { updateLoading, setUpdateLoading } = useContext(PutLoadingContext)
 
   const [loading, isLoading] = useState(false)
@@ -37,6 +40,7 @@ const AddContact = () => {
     isLoading(false)
     setUpdateLoading(false)
     setOpenAddPopUp(false)
+    setRowSettings(false)
   }
 
   // EDIT INPUNT HANDLE
@@ -53,6 +57,13 @@ const AddContact = () => {
       [event.target.name]: event.target.value
     });
   }
+  const reinitContact = async (updatedContact) => {
+    setContactData(prevContacts => 
+      prevContacts.map(contact => 
+        contact.id === updatedContact.id ? updatedContact : contact
+      )
+    );
+  };
 
   useEffect(() => {
     if (!updateLoading) return
@@ -140,12 +151,14 @@ const AddContact = () => {
         const form = event.target as HTMLFormElement;
 
         const formData = new FormData(event.currentTarget);
+        const id = updateE.id as number;
         const name = formData.get("name") as string;
         const phone = formData.get("phone") as string;
         const email = formData.get("email") as string;
         const url = profileSrc as string;
           
-        const contactData: ContactCreateInput = {
+        const contactData: UpdateCreateInput = {
+          id,
           name,
           phone,
           email,
@@ -155,15 +168,13 @@ const AddContact = () => {
 
         try {
           await updateContact(updateE.id, contactData)
-          setContactData([...contactsState, contactData])
+          reinitContact(contactData)
+
           form.reset()
+          fullReset()
         } catch (err) {
           console.error(err);
         }
-
-        // full reset
-        fullReset()
-        router.reload()
 
       }}> 
         <H2 id='title'>Edit Contact</H2>

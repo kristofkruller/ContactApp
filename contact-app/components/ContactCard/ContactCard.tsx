@@ -29,7 +29,7 @@ const ContactCard = ({ children }) => {
 
   const [selectedRowId, setSelectedRowId] = useState(null);
   const [rowData, setRowData] = useState([])
-  
+
   const displayRowHandler = (id) => {
     if (!id || id.lenght < 1) return
     setSelectedRowId(id);
@@ -76,7 +76,7 @@ const ContactCard = ({ children }) => {
           </Btn>
           <Image style={{ 
             position: "absolute",
-            right: "calc(calc(100vw - 848px) / 2);",
+            right: "calc(calc(100vw - 848px) / 2)",
           }}
             alt='light switch'
             src={"/icons/light.svg"}
@@ -87,12 +87,12 @@ const ContactCard = ({ children }) => {
       </ContactHeader>
       
       <ContactBody>
-        {rowData.map(({ id, name, phone, email, url }) => (
-            <ContactRow key={id}>
+        {rowData.map(({ id, name, phone, email, url }, i) => (
+            <ContactRow key={i}>
               <SepaDiv>
                 <Image
                   alt='minisized profile picture'
-                  src={url}
+                  src={!url ? "/icons/placeholder.png" : url}
                   width={40}
                   height={40}
                 />

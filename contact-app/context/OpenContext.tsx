@@ -7,12 +7,14 @@ export const OpenContext = createContext<{
   openAddPopUp: boolean,
   setOpenAddPopUp: SetStateAction<any>,
   rowSettings: boolean,
-  displayRowSettings: () => void
+  displayRowSettings: () => void,
+  setRowSettings: SetStateAction<any>,
 }>({
   openAddPopUp: false,
   setOpenAddPopUp: () => {},
   rowSettings: false,
-  displayRowSettings: () => {}
+  displayRowSettings: () => {},
+  setRowSettings: () => {}
 })
 
 //provider
@@ -27,7 +29,8 @@ export const OpenProvider = ({ children }: DefaultContextProps) => {
     openAddPopUp,
     setOpenAddPopUp,
     rowSettings,
-    displayRowSettings
+    displayRowSettings,
+    setRowSettings
   }
 
   return <OpenContext.Provider value={value}>{children}</OpenContext.Provider>

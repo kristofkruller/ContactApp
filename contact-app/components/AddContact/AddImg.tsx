@@ -65,7 +65,6 @@ const AddImg = () => {
 
   useEffect(() => {
     if (!updateLoading) return
-    console.log("mount")
     mountingViaEdit();
   },[])
 
