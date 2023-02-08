@@ -39,6 +39,16 @@ All CRUD operations are working. I should've use Strapi but SQLite was a demand 
 
 The communication is validated between them so if you delete a record the image will be deleted from firebase as well ect.
 
-I did not implement User Auth or additional settings or dark/light mode switch.
+Useflow methods:
+create -> full (img change option as well)
+create -> inputs full without img
+update -> any field or img (change or delete)
+delete full
+
+by image upload i put a submit step in, to prevent unwanted uploads, so pick an img and after that you should submit to be uploaded
+
+### I did not implement 
+`YET` 
+User Auth or additional settings or dark/light mode switch.
 
 
