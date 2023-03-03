@@ -28,10 +28,7 @@ this will install all the dependencies as
     "typescript": "^4.9.5"
   }
 
-please create an .env file in root of contact-app and put inside: 
-
-DATABASE_URL="file:./dev.db"
-FIREBASE_API_KEY="AIzaSyCzyQeBaFDOeAbL_2OUwIODeDiDChaeyCc"
+env not incl
 
 ```sometimes prisma does not like this way and there can be an error, then it would be great if you jus fill the .env DATABASE_URL part by hand then it will be ok```
 
