@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app"
+import { FirebaseError, initializeApp } from "firebase/app"
 import { deleteObject, getStorage, ref } from "firebase/storage"
-
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,9 +15,31 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID
 };
 
-// Initialize Firebase
+// INIT FIREBASE
 const app = initializeApp(firebaseConfig);
 
+// AUTH
+export const auth = getAuth(app);
+
+export const signUpwithFirebase = async (mail: string, pass: string) => {
+  try {
+    await createUserWithEmailAndPassword(auth, mail, pass);
+  } catch (error: FirebaseError | unknown) {
+    if (error instanceof FirebaseError) {
+       console.error("Firebase error",error);
+    }
+  }
+};
+export const signInwithFirebase = async (mail: string, pass: string) => {
+  try {
+    await signInWithEmailAndPassword(auth, mail, pass);
+  } catch (error: FirebaseError | unknown) {
+    if (error instanceof FirebaseError) {
+       console.error("Firebase error",error);
+    }
+  }
+};
+// IMG HANDLER
 export const imgStorage = getStorage(app);
 
 export const deleteImage = async (url) => {
