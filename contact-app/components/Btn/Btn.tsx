@@ -2,7 +2,6 @@ import { FC, ReactNode, ButtonHTMLAttributes } from "react";
 import {
   BtnLI, 
   SecondaryBtnLI, 
-  SpecialBtnLI, 
   PrimaryBtnL, 
   SecondaryBtnL, 
   PrimaryBtnI, 
@@ -31,7 +30,6 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.BtnLI) =>
   ({
     [BUTTON_TYPE_CLASSES.BtnLI]: BtnLI,
     [BUTTON_TYPE_CLASSES.SecondaryBtnLI]: SecondaryBtnLI,
-    [BUTTON_TYPE_CLASSES.SpecialBtnLI]: SpecialBtnLI,
     [BUTTON_TYPE_CLASSES.PrimaryBtnL]: PrimaryBtnL,
     [BUTTON_TYPE_CLASSES.SecondaryBtnL]: SecondaryBtnL,
     [BUTTON_TYPE_CLASSES.PrimaryBtnI]: PrimaryBtnI,
