@@ -8,11 +8,11 @@ import { deleteObject, getStorage, ref } from "firebase/storage"
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "contactapp-66a1a.firebaseapp.com",
-  projectId: "contactapp-66a1a",
-  storageBucket: "contactapp-66a1a.appspot.com",
-  messagingSenderId: "436442060092",
-  appId: "1:436442060092:web:fc418a4ddbfe97f8997a39"
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 // Initialize Firebase

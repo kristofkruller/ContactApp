@@ -28,26 +28,20 @@ this will install all the dependencies as
     "typescript": "^4.9.5"
   }
 
-env not incl
-
-```sometimes prisma does not like this way and there can be an error, then it would be great if you jus fill the .env DATABASE_URL part by hand then it will be ok```
+first backend starts with `npx prisma studio`
+.then `npm run dev` for frontend
 
 ## How to use
 
-All CRUD operations are working. I should've use Strapi but SQLite was a demand so I did it with PRISMA ORM, and for image handeling i used Firebase Storage. 
-
+All CRUD operations are working. Serverless SQLite with PRISMA ORM, and for image handeling i used Firebase Storage and for Auth Firebase Auth. 
 The communication is validated between them so if you delete a record the image will be deleted from firebase as well ect.
 
-Useflow methods:
+**Useflow methods:**    
+```
 create -> full (img change option as well)
 create -> inputs full without img
 update -> any field or img (change or delete)
 delete full
-
+```
 By image upload i put a submit step in, to prevent unwanted uploads, so pick an img and after that you should submit to be uploaded
-
-### I did not implement 
-`YET` 
-User Auth or additional settings or dark/light mode switch.
-
-
+*Only allow uploads of any image file that's less than 5MB and the user signed in*
